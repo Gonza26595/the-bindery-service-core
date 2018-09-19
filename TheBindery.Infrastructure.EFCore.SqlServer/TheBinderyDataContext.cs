@@ -17,13 +17,16 @@ namespace TheBindery.Infrastructure.EFCore.SqlServer
         public TheBinderyDataContext(DbContextOptions options) : base(options) { }
 
 
-        public DbSet<GalleryImage> GalleryImages { get; set; }
-        public DbSet<Event> Events { get; set; }
-        public DbSet<News> News { get; set; }
+        public DbSet<TheBinderyContent> TheBinderyContent { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<GalleryImage>().HasBaseType<TheBinderyContent>();
 
+            modelBuilder.Entity<Event>().HasBaseType<TheBinderyContent>();
+
+            modelBuilder.Entity<News>().HasBaseType<TheBinderyContent>();
         }
     }
     }

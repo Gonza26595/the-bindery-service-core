@@ -91,5 +91,49 @@ namespace TheBindery.Application.RestApi.Controllers
 
             return newsList;
         }
+
+
+        [HttpGet("{newsId}")]
+        public async Task<IActionResult> GetById(int newsId)
+        {
+            try
+            {
+
+                var news = await _newsService.GetById(newsId);
+
+                var newsResponseResourceModel = _mapper.Map<News, NewsResponseResourceModel>(news);
+
+                return StatusCode((int)HttpStatusCode.OK, newsResponseResourceModel);
+
+            }
+            catch (EntityException e)
+            {
+                return StatusCode((int)HttpStatusCode.UnprocessableEntity, new { e.Message, e.Code, Field = e.Field.ToLower() });
+            }
+        }
+
+
+        [HttpPut("{newsId}")]
+        public async Task<IActionResult> UpdateNews(int newsId,
+                                                         NewsRequestResourceModel newsRequestResouceModel)
+        {
+            try
+            {
+                await _newsService.Update(newsId,
+                                           newsRequestResouceModel.Title,
+                                           newsRequestResouceModel.ContentParagraph,
+                                           newsRequestResouceModel.NewsDate,
+                                           newsRequestResouceModel.Section,
+                                           newsRequestResouceModel.Author);
+
+
+
+                return StatusCode((int)HttpStatusCode.OK, new { Message = "News was updated successfully." });
+            }
+            catch (EntityException e)
+            {
+                return StatusCode((int)HttpStatusCode.UnprocessableEntity, new { e.Message, e.Code, Field = e.Field.ToLower() });
+            }
+        }
     }
 }

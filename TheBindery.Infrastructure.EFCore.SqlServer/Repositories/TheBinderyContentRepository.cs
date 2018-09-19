@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,12 +18,21 @@ namespace TheBindery.Infrastructure.EFCore.SqlServer.Repositories
         {
         }
 
+        public Event GetEventById(int id)
+        {
+            return base.GetAll().OfType<Event>().Where(x => x.Id.Equals(id)).FirstOrDefault();
+        }
 
         public IEnumerable<Event> GetEvents()
         {
             var list = base.GetAll().OfType<Event>();
 
             return list;
+        }
+
+        public GalleryImage GetGalleryImageById(int id)
+        {
+            return base.GetAll().OfType<GalleryImage>().Where(x => x.Id.Equals(id)).FirstOrDefault();
         }
 
         public IEnumerable<GalleryImage> GetGalleryImages()
@@ -34,5 +44,11 @@ namespace TheBindery.Infrastructure.EFCore.SqlServer.Repositories
         {
             return base.GetAll().OfType<News>();
         }
+
+        public News GetNewsById(int id)
+        {
+            return base.GetAll().OfType<News>().Where(x => x.Id.Equals(id)).FirstOrDefault();
+        }
+
     }
 }

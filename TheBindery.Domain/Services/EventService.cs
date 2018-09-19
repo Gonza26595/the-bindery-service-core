@@ -36,6 +36,23 @@ namespace TheBindery.Domain.Services
         {
             return _theBinderyContentRepository.GetEvents();
         }
+
+        public async Task<Event> GetById(int id)
+        {
+            return _theBinderyContentRepository.GetEventById(id);
+        }
+
+        public async Task Update(int id, string title, string contentParagraph)
+        {
+            var eventToUpdate = _theBinderyContentRepository.GetEventById(id);
+
+            eventToUpdate.Title = title;
+            eventToUpdate.ContentParagraph = contentParagraph;
+
+             _theBinderyContentRepository.Update(eventToUpdate);
+
+            await _theBinderyContentRepository.Context.CommitAsync();
+        }
     }
 
 }

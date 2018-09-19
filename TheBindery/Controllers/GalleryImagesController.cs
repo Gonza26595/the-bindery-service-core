@@ -86,5 +86,47 @@ namespace TheBindery.Application.RestApi.Controllers
         }
 
 
+        [HttpGet("{galleryImageId}")]
+        public async Task<IActionResult> GetById(int galleryImageId)
+        {
+            try
+            {
+
+                var galleryImage = await _galleryImageService.GetById(galleryImageId);
+
+                var galleryImageResponseResourceModel = _mapper.Map<GalleryImage,GalleryImageResponseResourceModel>(galleryImage);
+
+                return StatusCode((int)HttpStatusCode.OK, galleryImageResponseResourceModel);
+
+            }
+            catch (EntityException e)
+            {
+                return StatusCode((int)HttpStatusCode.UnprocessableEntity, new { e.Message, e.Code, Field = e.Field.ToLower() });
+            }
+        }
+
+
+        [HttpPut("{galleryImageId}")]
+        public async Task<IActionResult> UpdateGalleryImage(int galleryImageId,
+                                                         GalleryImageRequestResourceModel galleryImageRequestResouceModel)
+        {
+            try
+            {
+                await _galleryImageService.Update(galleryImageId,
+                                           galleryImageRequestResouceModel.Title,
+                                           galleryImageRequestResouceModel.ContentParagraph,
+                                           galleryImageRequestResouceModel.Author);
+
+
+
+                return StatusCode((int)HttpStatusCode.OK, new { Message = "Image was updated successfully." });
+            }
+            catch (EntityException e)
+            {
+                return StatusCode((int)HttpStatusCode.UnprocessableEntity, new { e.Message, e.Code, Field = e.Field.ToLower() });
+            }
+        }
+
+
     }
 }

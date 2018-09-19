@@ -18,6 +18,10 @@ namespace TheBindery.Domain.Repositories
 
         IEnumerable<News> GetNews();
 
+        Event GetEventById(int id);
+        GalleryImage GetGalleryImageById(int id);
+        News GetNewsById(int id);
+
     }
 
 }

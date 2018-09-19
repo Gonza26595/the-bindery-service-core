@@ -36,5 +36,23 @@ namespace TheBindery.Domain.Services
         {
            return  _theBinderyContentRepository.GetGalleryImages();
         }
+
+        public async Task<GalleryImage> GetById(int id)
+        {
+            return _theBinderyContentRepository.GetGalleryImageById(id);
+        }
+
+        public async Task Update(int id, string title, string contentParagraph, string author)
+        {
+            var galleryImage = _theBinderyContentRepository.GetGalleryImageById(id);
+
+            galleryImage.Title = title;
+            galleryImage.ContentParagraph = contentParagraph;
+            galleryImage.Author = author;
+
+             _theBinderyContentRepository.Update(galleryImage);
+
+            await _theBinderyContentRepository.Context.CommitAsync();
+        }
     }
 }

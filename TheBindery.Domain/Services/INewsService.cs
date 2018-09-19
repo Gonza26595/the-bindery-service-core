@@ -16,6 +16,16 @@ namespace TheBindery.Domain.Services
                       string author);
 
         IEnumerable<News> GetAll();
+
+        Task<News> GetById(int id);
+
+        Task Update(int id,
+                string title,
+                string contentParagraph,
+                DateTime? newsDate,
+                string section,
+                string author);
+
     }
 
 

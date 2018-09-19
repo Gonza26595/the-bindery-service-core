@@ -15,5 +15,11 @@ namespace TheBindery.Domain.Services
 
 
         IEnumerable<Event> GetAll();
+
+        Task<Event> GetById(int id);
+
+        Task Update(int id,
+                string title,
+                string contentParagraph);
     }
 }

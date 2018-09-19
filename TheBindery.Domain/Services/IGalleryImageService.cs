@@ -14,5 +14,12 @@ namespace TheBindery.Domain.Services
                        string author);
 
         IEnumerable<GalleryImage> GetAll();
+
+        Task<GalleryImage> GetById(int id);
+
+        Task Update(int id,
+                string title,
+                string contentParagraph,
+                string author);
     }
 }

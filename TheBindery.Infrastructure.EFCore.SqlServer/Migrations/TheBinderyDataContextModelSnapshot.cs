@@ -19,7 +19,7 @@ namespace TheBindery.Infrastructure.EFCore.SqlServer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("TheBindery.Domain.Agreggates.Event.Event", b =>
+            modelBuilder.Entity("TheBindery.Domain.Agreggates.TheBinderyContent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -27,49 +27,53 @@ namespace TheBindery.Infrastructure.EFCore.SqlServer.Migrations
 
                     b.Property<string>("ContentParagraph");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Events");
+                    b.ToTable("TheBinderyContent");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("TheBinderyContent");
+                });
+
+            modelBuilder.Entity("TheBindery.Domain.Agreggates.Event.Event", b =>
+                {
+                    b.HasBaseType("TheBindery.Domain.Agreggates.TheBinderyContent");
+
+
+                    b.ToTable("Event");
+
+                    b.HasDiscriminator().HasValue("Event");
                 });
 
             modelBuilder.Entity("TheBindery.Domain.Agreggates.GalleryImage.GalleryImage", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.HasBaseType("TheBindery.Domain.Agreggates.TheBinderyContent");
 
                     b.Property<string>("Author");
 
-                    b.Property<string>("ContentParagraph");
+                    b.ToTable("GalleryImage");
 
-                    b.Property<string>("Title");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("GalleryImages");
+                    b.HasDiscriminator().HasValue("GalleryImage");
                 });
 
             modelBuilder.Entity("TheBindery.Domain.Agreggates.News.News", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.HasBaseType("TheBindery.Domain.Agreggates.TheBinderyContent");
 
-                    b.Property<string>("Author");
-
-                    b.Property<string>("ContentParagraph");
+                    b.Property<string>("Author")
+                        .HasColumnName("News_Author");
 
                     b.Property<DateTime?>("NewsDate");
 
                     b.Property<string>("Section");
 
-                    b.Property<string>("Title");
-
-                    b.HasKey("Id");
-
                     b.ToTable("News");
+
+                    b.HasDiscriminator().HasValue("News");
                 });
 #pragma warning restore 612, 618
         }
