@@ -10,7 +10,7 @@ using TheBindery.Infrastructure.EFCore.SqlServer;
 namespace TheBindery.Infrastructure.EFCore.SqlServer.Migrations
 {
     [DbContext(typeof(TheBinderyDataContext))]
-    [Migration("20180917162855_Initial")]
+    [Migration("20180927123900_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,6 +70,8 @@ namespace TheBindery.Infrastructure.EFCore.SqlServer.Migrations
                         .HasColumnName("News_Author");
 
                     b.Property<DateTime?>("NewsDate");
+
+                    b.Property<int>("Position");
 
                     b.Property<string>("Section");
 

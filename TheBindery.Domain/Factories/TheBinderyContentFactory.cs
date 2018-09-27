@@ -24,13 +24,14 @@ namespace TheBindery.Domain.Factories
             };
         }
 
-        public News CreateNews(string title, string contentParagraph, DateTime? newsDate, string section, string author)
+        public News CreateNews(string title, string contentParagraph, DateTime? newsDate, string section, string author,int position)
         {
             return new News(title, contentParagraph)
             {
                 NewsDate = newsDate,
                 Section = section,
-                Author = author
+                Author = author,
+                Position = position
             };
         }
     }

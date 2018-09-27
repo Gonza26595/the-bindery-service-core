@@ -12,10 +12,10 @@ namespace TheBindery.Domain.Agreggates.News
         {
         }
 
-
         public DateTime? NewsDate { get; set; }
         public string Author { get; set; }
         public string Section { get; set; }
+        public int Position { get; set; }
 
 
 

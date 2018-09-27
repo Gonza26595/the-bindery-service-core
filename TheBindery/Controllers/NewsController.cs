@@ -41,7 +41,8 @@ namespace TheBindery.Application.RestApi.Controllers
                                                     newsRequestResourceModel.ContentParagraph,
                                                     newsRequestResourceModel.NewsDate,
                                                     newsRequestResourceModel.Section,
-                                                    newsRequestResourceModel.Author);
+                                                    newsRequestResourceModel.Author,
+                                                    newsRequestResourceModel.Position);
 
 
 
@@ -83,7 +84,8 @@ namespace TheBindery.Application.RestApi.Controllers
                     ContentParagraph = noticia.ContentParagraph,
                     Section = noticia.Section,
                     NewsDate = noticia.NewsDate,
-                    Author = noticia.Author
+                    Author = noticia.Author,
+                    Position = noticia.Position
                 };
 
                 newsList.Add(newsToAdd);
@@ -124,7 +126,8 @@ namespace TheBindery.Application.RestApi.Controllers
                                            newsRequestResouceModel.ContentParagraph,
                                            newsRequestResouceModel.NewsDate,
                                            newsRequestResouceModel.Section,
-                                           newsRequestResouceModel.Author);
+                                           newsRequestResouceModel.Author,
+                                           newsRequestResouceModel.Position);
 
 
 

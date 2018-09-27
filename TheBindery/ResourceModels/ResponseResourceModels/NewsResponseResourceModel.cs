@@ -14,5 +14,6 @@ namespace TheBindery.Application.RestApi.ResourceModels.ResponseResourceModels
         public DateTime? NewsDate { get; set; }
         public string Section { get; set; }
         public string Author { get; set; }
+        public int Position { get; set; }
     }
 }

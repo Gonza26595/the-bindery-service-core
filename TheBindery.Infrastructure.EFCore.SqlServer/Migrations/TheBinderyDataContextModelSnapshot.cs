@@ -69,6 +69,8 @@ namespace TheBindery.Infrastructure.EFCore.SqlServer.Migrations
 
                     b.Property<DateTime?>("NewsDate");
 
+                    b.Property<int>("Position");
+
                     b.Property<string>("Section");
 
                     b.ToTable("News");

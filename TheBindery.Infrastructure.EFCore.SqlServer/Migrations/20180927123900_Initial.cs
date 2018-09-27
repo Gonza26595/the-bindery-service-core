@@ -20,7 +20,8 @@ namespace TheBindery.Infrastructure.EFCore.SqlServer.Migrations
                     Author = table.Column<string>(nullable: true),
                     NewsDate = table.Column<DateTime>(nullable: true),
                     News_Author = table.Column<string>(nullable: true),
-                    Section = table.Column<string>(nullable: true)
+                    Section = table.Column<string>(nullable: true),
+                    Position = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

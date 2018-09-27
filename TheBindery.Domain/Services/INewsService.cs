@@ -13,7 +13,8 @@ namespace TheBindery.Domain.Services
                       string contentParagraph,
                       DateTime? newsDate,
                       string section,
-                      string author);
+                      string author,
+                      int position);
 
         IEnumerable<News> GetAll();
 
@@ -24,7 +25,8 @@ namespace TheBindery.Domain.Services
                 string contentParagraph,
                 DateTime? newsDate,
                 string section,
-                string author);
+                string author,
+                int position);
 
     }
 

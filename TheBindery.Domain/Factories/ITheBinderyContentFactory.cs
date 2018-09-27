@@ -15,7 +15,8 @@ namespace TheBindery.Domain.Factories
                         string contentParagraph,
                         DateTime? newsDate,
                         string section,
-                        string author);
+                        string author,
+                        int position);
 
         Event CreateEvent(string title,
                           string contentParagraph);

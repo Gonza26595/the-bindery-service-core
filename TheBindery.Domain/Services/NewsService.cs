@@ -21,11 +21,20 @@ namespace TheBindery.Domain.Services
             _theBinderyContentFactory = theBinderyContentFactory;
         }
 
-        public async Task<int> Add(string title, string contentParagraph, DateTime? newsDate, string section, string author)
+        public async Task<int> Add(string title, string contentParagraph, DateTime? newsDate, string section, string author,int position)
         {
-            var news = _theBinderyContentFactory.CreateNews(title, contentParagraph, newsDate, section, author);
+            var news = _theBinderyContentFactory.CreateNews(title, contentParagraph, newsDate, section, author,position);
+
+            var newsToReplaceInPosition = _theBinderyContentRepository.GetNewsByPosition(position);
+
+            if(newsToReplaceInPosition != null)
+            {
+                newsToReplaceInPosition.Position = 0;
+                _theBinderyContentRepository.Update(newsToReplaceInPosition);
+            }
 
             _theBinderyContentRepository.Add(news);
+
 
             await _theBinderyContentRepository.Context.CommitAsync();
 
@@ -42,15 +51,26 @@ namespace TheBindery.Domain.Services
             return _theBinderyContentRepository.GetNewsById(id);
         }
 
-        public async Task Update(int id, string title, string contentParagraph, DateTime? newsDate, string section, string author)
+
+        public async Task Update(int id, string title, string contentParagraph, DateTime? newsDate, string section, string author,int position)
         {
             var news = _theBinderyContentRepository.GetNewsById(id);
+
+            var newsToReplaceInPosition = _theBinderyContentRepository.GetNewsByPosition(position);
+
+            if (newsToReplaceInPosition != null)
+            {
+                newsToReplaceInPosition.Position = 0;
+                _theBinderyContentRepository.Update(newsToReplaceInPosition);
+
+            }
 
             news.Title = title;
             news.ContentParagraph = contentParagraph;
             news.NewsDate = newsDate;
             news.Section = section;
             news.Author = author;
+            news.Position = position;
 
 
              _theBinderyContentRepository.Update(news);
