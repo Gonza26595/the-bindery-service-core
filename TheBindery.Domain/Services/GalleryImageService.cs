@@ -21,9 +21,17 @@ namespace TheBindery.Domain.Services
             _theBinderyContentFactory = theBinderyContentFactory;
         }
 
-        public async Task<int> Add(string title, string contentParagraph, string author)
+        public async Task<int> Add(string title, string contentParagraph, string author,int position)
         {
-            var galleryImage = _theBinderyContentFactory.CreateGalleryImage(title, contentParagraph, author);
+            var galleryImage = _theBinderyContentFactory.CreateGalleryImage(title, contentParagraph, author,position);
+
+            var imageToReplaceInPosition = _theBinderyContentRepository.GetGalleryImageByPosition(position);
+
+            if (imageToReplaceInPosition != null)
+            {
+                imageToReplaceInPosition.Position = 0;
+                _theBinderyContentRepository.Update(imageToReplaceInPosition);
+            }
 
             _theBinderyContentRepository.Add(galleryImage);
 
@@ -42,13 +50,14 @@ namespace TheBindery.Domain.Services
             return _theBinderyContentRepository.GetGalleryImageById(id);
         }
 
-        public async Task Update(int id, string title, string contentParagraph, string author)
+        public async Task Update(int id, string title, string contentParagraph, string author,int position)
         {
             var galleryImage = _theBinderyContentRepository.GetGalleryImageById(id);
 
             galleryImage.Title = title;
             galleryImage.ContentParagraph = contentParagraph;
             galleryImage.Author = author;
+            galleryImage.Position = position;
 
              _theBinderyContentRepository.Update(galleryImage);
 

@@ -8,7 +8,7 @@ namespace TheBindery.Domain.Agreggates.Event
 {
     public class Event : TheBinderyContent
     {
-        public Event(string title, string contentParagraph) : base(title, contentParagraph)
+        public Event(string title, string contentParagraph,int position) : base(title, contentParagraph,position)
         {
         }
 

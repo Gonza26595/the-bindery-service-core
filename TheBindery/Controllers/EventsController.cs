@@ -39,7 +39,8 @@ namespace TheBindery.Application.RestApi.Controllers
             try
             {
                 var eventId = await _eventService.Add(eventRequestResourceModel.Title,
-                                                                    eventRequestResourceModel.ContentParagraph);
+                                                      eventRequestResourceModel.ContentParagraph,
+                                                      eventRequestResourceModel.Position);
 
 
 
@@ -77,7 +78,8 @@ namespace TheBindery.Application.RestApi.Controllers
                 {
                     Id = evento.Id,
                     Title = evento.Title,
-                    ContentParagraph = evento.ContentParagraph
+                    ContentParagraph = evento.ContentParagraph,
+                    Position = evento.Position
                 };
 
                 eventsList.Add(eventToAdd);
@@ -116,7 +118,8 @@ namespace TheBindery.Application.RestApi.Controllers
             {
                 await _eventService.Update(eventId,
                                            eventRequestResouceModel.Title,
-                                           eventRequestResouceModel.ContentParagraph);
+                                           eventRequestResouceModel.ContentParagraph,
+                                           eventRequestResouceModel.Position);
 
 
 

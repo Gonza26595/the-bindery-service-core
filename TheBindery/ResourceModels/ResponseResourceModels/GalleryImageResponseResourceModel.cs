@@ -12,5 +12,6 @@ namespace TheBindery.Application.RestApi.ResourceModels.ResponseResourceModels
         public string Title { get; set; }
         public string ContentParagraph { get; set; }
         public string Author { get; set; }
+        public int Position { get; set; }
     }
 }

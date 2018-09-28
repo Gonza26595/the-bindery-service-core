@@ -8,7 +8,7 @@ namespace TheBindery.Domain.Agreggates.GalleryImage
 {
     public class GalleryImage : TheBinderyContent
     {
-        public GalleryImage(string title, string contentParagraph) : base(title, contentParagraph)
+        public GalleryImage(string title, string contentParagraph,int position) : base(title, contentParagraph,position)
         {
         }
 

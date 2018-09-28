@@ -23,6 +23,9 @@ namespace TheBindery.Domain.Repositories
         News GetNewsById(int id);
 
         News GetNewsByPosition(int position);
+        Event GetEventByPosition(int position);
+        GalleryImage GetGalleryImageByPosition(int position);
+
 
     }
 

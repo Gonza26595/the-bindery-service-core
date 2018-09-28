@@ -30,6 +30,8 @@ namespace TheBindery.Infrastructure.EFCore.SqlServer.Migrations
                     b.Property<string>("Discriminator")
                         .IsRequired();
 
+                    b.Property<int>("Position");
+
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
@@ -68,8 +70,6 @@ namespace TheBindery.Infrastructure.EFCore.SqlServer.Migrations
                         .HasColumnName("News_Author");
 
                     b.Property<DateTime?>("NewsDate");
-
-                    b.Property<int>("Position");
 
                     b.Property<string>("Section");
 

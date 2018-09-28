@@ -54,5 +54,15 @@ namespace TheBindery.Infrastructure.EFCore.SqlServer.Repositories
         {
             return base.GetAll().OfType<News>().Where(x => x.Position.Equals(position)).FirstOrDefault();
         }
+
+        public Event GetEventByPosition(int position)
+        {
+            return base.GetAll().OfType<Event>().Where(x => x.Position.Equals(position)).FirstOrDefault();
+        }
+
+        public GalleryImage GetGalleryImageByPosition(int position)
+        {
+            return base.GetAll().OfType<GalleryImage>().Where(x => x.Position.Equals(position)).FirstOrDefault();
+        }
     }
 }

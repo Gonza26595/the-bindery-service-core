@@ -39,7 +39,8 @@ namespace TheBindery.Application.RestApi.Controllers
             {
                 var galleryImageId = await _galleryImageService.Add(galleryImageRequestResourceModel.Title,
                                                                     galleryImageRequestResourceModel.ContentParagraph,
-                                                                    galleryImageRequestResourceModel.Author);
+                                                                    galleryImageRequestResourceModel.Author,
+                                                                    galleryImageRequestResourceModel.Position);
 
 
                 return StatusCode((int)HttpStatusCode.Created, new { Message = "Image was created successfully.", GalleryImageId = galleryImageId });
@@ -76,7 +77,8 @@ namespace TheBindery.Application.RestApi.Controllers
                 {
                     Id = image.Id,
                     Title = image.Title,
-                    ContentParagraph = image.ContentParagraph
+                    ContentParagraph = image.ContentParagraph,
+                    Position = image.Position
                 };
 
                 imagesList.Add(imageToAdd);
@@ -115,7 +117,8 @@ namespace TheBindery.Application.RestApi.Controllers
                 await _galleryImageService.Update(galleryImageId,
                                            galleryImageRequestResouceModel.Title,
                                            galleryImageRequestResouceModel.ContentParagraph,
-                                           galleryImageRequestResouceModel.Author);
+                                           galleryImageRequestResouceModel.Author,
+                                           galleryImageRequestResouceModel.Position);
 
 
 

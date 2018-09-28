@@ -11,14 +11,14 @@ namespace TheBindery.Domain.Factories
 {
     public class TheBinderyContentFactory : ITheBinderyContentFactory
     {
-        public Event CreateEvent(string title, string contentParagraph)
+        public Event CreateEvent(string title, string contentParagraph,int position)
         {
-            return new Event(title, contentParagraph);
+            return new Event(title, contentParagraph,position);
         }
 
-        public GalleryImage CreateGalleryImage(string title, string contentParagraph, string author)
+        public GalleryImage CreateGalleryImage(string title, string contentParagraph, string author,int position)
         {
-            return new GalleryImage(title, contentParagraph)
+            return new GalleryImage(title, contentParagraph,position)
             {
                 Author = author
             };
@@ -26,12 +26,11 @@ namespace TheBindery.Domain.Factories
 
         public News CreateNews(string title, string contentParagraph, DateTime? newsDate, string section, string author,int position)
         {
-            return new News(title, contentParagraph)
+            return new News(title, contentParagraph,position)
             {
                 NewsDate = newsDate,
                 Section = section,
                 Author = author,
-                Position = position
             };
         }
     }

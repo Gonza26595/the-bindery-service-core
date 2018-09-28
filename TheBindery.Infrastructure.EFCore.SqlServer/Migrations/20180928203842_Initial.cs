@@ -16,12 +16,12 @@ namespace TheBindery.Infrastructure.EFCore.SqlServer.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(nullable: true),
                     ContentParagraph = table.Column<string>(nullable: true),
+                    Position = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
                     Author = table.Column<string>(nullable: true),
                     NewsDate = table.Column<DateTime>(nullable: true),
                     News_Author = table.Column<string>(nullable: true),
-                    Section = table.Column<string>(nullable: true),
-                    Position = table.Column<int>(nullable: true)
+                    Section = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

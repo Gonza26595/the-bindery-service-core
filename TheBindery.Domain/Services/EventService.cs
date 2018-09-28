@@ -21,11 +21,19 @@ namespace TheBindery.Domain.Services
             _theBinderyContentFactory = theBinderyContentFactory;
         }
 
-        public async Task<int> Add(string title, string contentParagraph)
+        public async Task<int> Add(string title, string contentParagraph,int position)
         {
-            var theBinderyEvent = _theBinderyContentFactory.CreateEvent(title, contentParagraph);
+            var theBinderyEvent = _theBinderyContentFactory.CreateEvent(title, contentParagraph,position);
 
-             _theBinderyContentRepository.Add(theBinderyEvent);
+            var eventToReplaceInPosition = _theBinderyContentRepository.GetEventByPosition(position);
+
+            if (eventToReplaceInPosition != null)
+            {
+                eventToReplaceInPosition.Position = 0;
+                _theBinderyContentRepository.Update(eventToReplaceInPosition);
+            }
+
+            _theBinderyContentRepository.Add(theBinderyEvent);
 
             await _theBinderyContentRepository.Context.CommitAsync();
 
@@ -42,12 +50,13 @@ namespace TheBindery.Domain.Services
             return _theBinderyContentRepository.GetEventById(id);
         }
 
-        public async Task Update(int id, string title, string contentParagraph)
+        public async Task Update(int id, string title, string contentParagraph,int position)
         {
             var eventToUpdate = _theBinderyContentRepository.GetEventById(id);
 
             eventToUpdate.Title = title;
             eventToUpdate.ContentParagraph = contentParagraph;
+            eventToUpdate.Position = position;
 
              _theBinderyContentRepository.Update(eventToUpdate);
 

@@ -11,7 +11,8 @@ namespace TheBindery.Domain.Services
     public interface IEventService
     {
         Task<int> Add(string title,
-                       string contentParagraph);
+                       string contentParagraph,
+                       int position);
 
 
         IEnumerable<Event> GetAll();
@@ -20,6 +21,7 @@ namespace TheBindery.Domain.Services
 
         Task Update(int id,
                 string title,
-                string contentParagraph);
+                string contentParagraph,
+                int position);
     }
 }

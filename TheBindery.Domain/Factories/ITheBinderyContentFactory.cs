@@ -19,12 +19,14 @@ namespace TheBindery.Domain.Factories
                         int position);
 
         Event CreateEvent(string title,
-                          string contentParagraph);
+                          string contentParagraph,
+                          int position);
 
 
         GalleryImage CreateGalleryImage(string title,
                                         string contentParagraph,
-                                        string author);
+                                        string author,
+                                        int position);
 
 
 

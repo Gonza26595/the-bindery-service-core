@@ -11,7 +11,8 @@ namespace TheBindery.Domain.Services
     {
         Task<int> Add(string title,
                        string contentParagraph,
-                       string author);
+                       string author,
+                       int position);
 
         IEnumerable<GalleryImage> GetAll();
 
@@ -20,6 +21,7 @@ namespace TheBindery.Domain.Services
         Task Update(int id,
                 string title,
                 string contentParagraph,
-                string author);
+                string author,
+                int position);
     }
 }
