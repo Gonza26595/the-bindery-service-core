@@ -54,6 +54,15 @@ namespace TheBindery.Domain.Services
         {
             var eventToUpdate = _theBinderyContentRepository.GetEventById(id);
 
+            var eventToReplaceInPosition = _theBinderyContentRepository.GetEventByPosition(position);
+
+            if (eventToReplaceInPosition != null)
+            {
+                eventToReplaceInPosition.Position = 0;
+                _theBinderyContentRepository.Update(eventToReplaceInPosition);
+
+            }
+
             eventToUpdate.Title = title;
             eventToUpdate.ContentParagraph = contentParagraph;
             eventToUpdate.Position = position;

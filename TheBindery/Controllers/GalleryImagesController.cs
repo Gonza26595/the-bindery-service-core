@@ -78,6 +78,7 @@ namespace TheBindery.Application.RestApi.Controllers
                     Id = image.Id,
                     Title = image.Title,
                     ContentParagraph = image.ContentParagraph,
+                    Author = image.Author,
                     Position = image.Position
                 };
 

@@ -54,6 +54,15 @@ namespace TheBindery.Domain.Services
         {
             var galleryImage = _theBinderyContentRepository.GetGalleryImageById(id);
 
+            var imageToReplaceInPosition = _theBinderyContentRepository.GetGalleryImageByPosition(position);
+
+            if (imageToReplaceInPosition != null)
+            {
+                imageToReplaceInPosition.Position = 0;
+                _theBinderyContentRepository.Update(imageToReplaceInPosition);
+
+            }
+
             galleryImage.Title = title;
             galleryImage.ContentParagraph = contentParagraph;
             galleryImage.Author = author;
